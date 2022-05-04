@@ -10,11 +10,13 @@ namespace Repository.Contract.Infrastructure
     {
         protected BaseDbContext()
         {
+            Database.Migrate();
         }
 
         protected BaseDbContext(DbContextOptions options)
             : base(options)
         {
+            Database.Migrate();
         }
 
         Task<EntityEntry> IDbContext.AddAsync(object entity, CancellationToken cancellationToken)

@@ -8,16 +8,16 @@ using System.Reflection;
 
 namespace Repository.Infrastructure
 {
-    public sealed partial class ExampleDbContext : BaseDbContext
+    public sealed partial class AppDbContext : BaseDbContext
     {
         public readonly int CommandTimeoutInSecond = 20 * 60;
 
-        public ExampleDbContext()
+        public AppDbContext()
         {
             Database.SetCommandTimeout(CommandTimeoutInSecond);
         }
 
-        public ExampleDbContext(DbContextOptions<ExampleDbContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             Database.SetCommandTimeout(CommandTimeoutInSecond);
         }
@@ -35,8 +35,9 @@ namespace Repository.Infrastructure
 
                 optionsBuilder.UseSqlServer(connectionString, sqlServerOptionsAction =>
                 {
+                    //sqlServerOptionsAction.EnableRetryOnFailure();
                     sqlServerOptionsAction.MigrationsAssembly(
-                        typeof(ExampleDbContext).GetTypeInfo().Assembly.GetName().Name);
+                        typeof(AppDbContext).GetTypeInfo().Assembly.GetName().Name);
 
                     sqlServerOptionsAction.MigrationsHistoryTable("Migration");
                 });

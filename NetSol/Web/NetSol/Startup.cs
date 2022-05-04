@@ -1,5 +1,10 @@
 ﻿using Core.Constant;
+using Core.Extension;
+using Core.JWT.JWTModel;
+using Core.JWT.LoadSetting;
 using Core.Models;
+using Core.Utils;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NetSol.Utils;
 using Repository.Contract.Infrastructure;
@@ -36,10 +42,40 @@ namespace NetSol
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSystemSetting(Configuration.GetSection("SystemHelper").Get<SystemHelperModel>());
+            services.AddJWTSetting(Configuration.GetSection("JWT").Get<JWT>());
 
-            services.AddDbContext<IDbContext,ExampleDbContext>();
+            services.AddDbContext<IDbContext,AppDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IRepository<User>, UserRepository>();
+
+            services.AddServiceFromAttribute();
+            // Register Repository services
+            // services.AddRepository();
+
+
+            // Set up JWT Auth
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = SystemHelper.JWTSetting.Issuer,
+                    ValidateAudience = true,
+                    ValidAudience = SystemHelper.JWTSetting.Audience,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.Zero,
+
+                    IssuerSigningKey = new SymmetricSecurityKey(StringUltis.ToByteArray(SystemHelper.JWTSetting.SecrectKey))
+                };
+            });
+            services.AddHttpContextAccessor();
 
             services.Configure<RouteOptions>(options => {
                 options.AppendTrailingSlash = false;        // Thêm dấu / vào cuối URL
@@ -50,7 +86,7 @@ namespace NetSol
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NetSol", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NetSol", Version = SystemHelper.Setting.Version });
             });
         }
 
@@ -73,6 +109,7 @@ namespace NetSol
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

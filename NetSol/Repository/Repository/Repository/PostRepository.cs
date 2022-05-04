@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Repository.Repository
 {
-    [DIRegiter(typeof(IRepository<User>), typeof(UserRepository), RegisterType.Transient)]
-    public class UserRepository : Repository<User>
+    [DIRegiter(typeof(IRepository<Post>), typeof(PostRepository), RegisterType.Transient)]
+    public class PostRepository : Repository<Post>
     {
-        public UserRepository(IDbContext dbContext) : base(dbContext)
+        public PostRepository(IDbContext dbContext) : base(dbContext)
         {
         }
     }

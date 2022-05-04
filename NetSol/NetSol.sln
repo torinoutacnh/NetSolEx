@@ -5,19 +5,21 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Web", "1.Web", "{ECEE50CF-F563-4E98-8E1D-961D6A6BD572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSol", "Web\NetSol\NetSol.csproj", "{3E1F906C-0514-4A21-BB7B-C3800E465F11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetSol", "Web\NetSol\NetSol.csproj", "{3E1F906C-0514-4A21-BB7B-C3800E465F11}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Service", "2.Service", "{74864ADD-FB29-425E-9020-1BFA99A716C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Repository", "3.Repository", "{EBD5EC20-B322-4371-ACC0-36D36485F3F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository\Repository.csproj", "{E5150E54-5CDE-4872-82DF-982741137269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository\Repository.csproj", "{E5150E54-5CDE-4872-82DF-982741137269}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Cross", "4.Cross", "{200FB715-F993-4D27-90EB-19BA6148D1F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Cross\Core\Core.csproj", "{4BD9E416-B77D-4A97-A56E-06D6B65183FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Cross\Core\Core.csproj", "{4BD9E416-B77D-4A97-A56E-06D6B65183FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Contract", "Repository\Repository.Contract\Repository.Contract.csproj", "{9EE3E208-B299-4D76-B2D7-47B3564F4491}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Contract", "Repository\Repository.Contract\Repository.Contract.csproj", "{9EE3E208-B299-4D76-B2D7-47B3564F4491}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service\Service.csproj", "{DAE775C4-945A-4B69-A716-D478E0CAD8A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{9EE3E208-B299-4D76-B2D7-47B3564F4491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE3E208-B299-4D76-B2D7-47B3564F4491}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EE3E208-B299-4D76-B2D7-47B3564F4491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAE775C4-945A-4B69-A716-D478E0CAD8A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE775C4-945A-4B69-A716-D478E0CAD8A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE775C4-945A-4B69-A716-D478E0CAD8A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE775C4-945A-4B69-A716-D478E0CAD8A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{E5150E54-5CDE-4872-82DF-982741137269} = {EBD5EC20-B322-4371-ACC0-36D36485F3F4}
 		{4BD9E416-B77D-4A97-A56E-06D6B65183FA} = {200FB715-F993-4D27-90EB-19BA6148D1F3}
 		{9EE3E208-B299-4D76-B2D7-47B3564F4491} = {EBD5EC20-B322-4371-ACC0-36D36485F3F4}
+		{DAE775C4-945A-4B69-A716-D478E0CAD8A7} = {74864ADD-FB29-425E-9020-1BFA99A716C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADA86AB3-31B2-4568-9DDF-0BCEE70E6CFF}

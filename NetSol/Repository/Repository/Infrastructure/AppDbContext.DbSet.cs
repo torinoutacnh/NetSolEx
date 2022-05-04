@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Repository.Infrastructure
 {
-    public sealed partial class ExampleDbContext
+    public sealed partial class AppDbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

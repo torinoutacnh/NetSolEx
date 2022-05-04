@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Repository.Contract.Models
 {
-    public class User : Entity
+    public class Post : Entity
     {
-        public string UserName { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public string Content { get; set; }
+        public string UserId { get; set; }
+        public virtual User User { get; set; }
     }
 }
